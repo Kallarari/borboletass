@@ -14,6 +14,7 @@
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "styled-components": "^6.1.12",
     "vercel": "^35.1.0"
   },
   "devDependencies": {
@@ -24,7 +25,7 @@
     "eslint-config-next": "14.2.5",
     "typescript": "^5"
   },
-  "browser":{
+  "browser": {
     "child_process": false
-  }  
+  }
 }

@@ -1,18 +1,24 @@
 'use client'
 import axios from "axios";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import React from "react";
 
 // import { Container } from './styles';
 
-const pages: React.FC = () => {
+const HomePage: React.FC = () => {
+  const router = useRouter();
     function handleMakeRequisi(){
-        axios.get('/api/db')
+        axios.get('api/db')
     }
   return (
     <div>
-      <h1 onClick={handleMakeRequisi}>PAGE </h1>
+      <h1 onClick={handleMakeRequisi}>Fazer requisição </h1>
+
+      <button onClick={()=>router.push('/Indications')}>Página de Indicações</button>
+      <div></div>
     </div>
   );
 };
 
-export default pages;
+export default HomePage;
