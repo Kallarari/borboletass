@@ -6,4 +6,6 @@ export const ButtonsContainer = styled.div`
 `;
 export const IndicationContainer = styled.div`
   display: flex;
+  align-items: center;
+  gap:10px;
 `;

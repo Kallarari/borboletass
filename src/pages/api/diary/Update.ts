@@ -2,14 +2,18 @@ import { NowRequest, NowResponse } from "@vercel/node";
 import { connectToDatabase } from "../DBConect";
 import { ObjectId } from "mongodb";
 
-// use querry params para buscar com a propriedade id ex: id=_id e o atributo a ser editado podendo ele ser title, name e date
+// use querry params para buscar com a propriedade id ex: id=_id e o atributo a ser editado
 export default async (request: NowRequest, response: NowResponse) => {
   if (
     request.query.id &&
-    (request.body.title || request.body.name || request.body.date)
+    (request.body.happiness ||
+      request.body.content ||
+      request.body.title ||
+      request.body.data ||
+      request.body.user)
   ) {
     const db = await connectToDatabase(process.env.MONGODB_URI!);
-    const collection = db.collection("indications");
+    const collection = db.collection("diarys");
     let keyToModify = Object.keys(request.body);
     const result = await collection.updateOne(
       { _id: new ObjectId(request.query.id as string) },
