@@ -9,13 +9,9 @@ import React from "react";
 
 const HomePage: React.FC = () => {
   const router = useRouter();
-  function handleMakeRequisi() {
-    axios.get("api/db");
-  }
   return (
     <PageContainer>
       <div>
-        <h1 onClick={handleMakeRequisi}>Fazer requisição </h1>
         <button onClick={() => router.push("/Indications")}>
           Página de Indicações
         </button>

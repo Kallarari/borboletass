@@ -1,5 +1,5 @@
+import { IIndication } from "@/types/IIndication";
 import React from "react";
-import { IIndication } from "@/types/Iindication";
 
 interface IIndicationTag {
   indication: IIndication;

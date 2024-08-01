@@ -61,8 +61,8 @@ const Users: React.FC = () => {
               <td></td>
               <td></td>
             </tr>
-            {userList.map((item) => (
-              <tr>
+            {userList.map((item, key) => (
+              <tr key={key}>
                 <StyledTD>{item.name}</StyledTD>
                 <StyledTD>{item.password}</StyledTD>
                 <StyledTD>{item.type}</StyledTD>

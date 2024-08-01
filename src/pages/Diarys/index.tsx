@@ -54,8 +54,8 @@ const Diarys: React.FC = () => {
             <td></td>
             <td></td>
           </tr>
-          {diarysList.map((item) => (
-            <tr>
+          {diarysList.map((item,key) => (
+            <tr key={key}>
               <StyledTD>{item.title}</StyledTD>
               <StyledTD>{item.content}</StyledTD>
               <StyledTD>{item.data}</StyledTD>
