@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ButtonsContainer, CustomButton, StyledTD } from "./styles.module";
+import { ButtonsContainer, CustomButton, StyledTD } from "../../styles/Diarys.module";
 import { IDiary } from "@/types/IDiary";
 import axios from "axios";
 
