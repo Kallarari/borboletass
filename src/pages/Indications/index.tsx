@@ -45,8 +45,8 @@ const Indications: React.FC = () => {
         <input type="text" onChange={(e) => setTitle(e.target.value)} />
       </ButtonsContainer>
       <h2>Indicações</h2>
-      {indicationList.map((item) => (
-        <IndicationContainer>
+      {indicationList.map((item,key) => (
+        <IndicationContainer  key={key}>
           <a onClick={() => handleDeleteOne(item._id)}>Delete</a>
           <a onClick={() => handleUpdateOne(item._id)}>Update</a>
           <IndicationTag indication={item} />
