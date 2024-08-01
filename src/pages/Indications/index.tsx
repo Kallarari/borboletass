@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import { ButtonsContainer, IndicationContainer } from "./styles.module";
+import { ButtonsContainer, IndicationContainer } from "../../styles/Indications.module";
 import axios from "axios";
 import IndicationTag from "@/components/IndicationsPage/IndicationTag";
 import { IIndication } from "@/types/IIndication";

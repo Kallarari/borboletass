@@ -5,7 +5,7 @@ import {
   CustomButton,
   StyledTD,
   UserContainer,
-} from "./styles.module";
+} from "../../styles/Users.module";
 import axios from "axios";
 import { IUser } from "@/types/IUser";
 import PageContainer from "@/components/PageContainer";

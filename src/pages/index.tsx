@@ -4,7 +4,7 @@ import axios from "axios";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import React from "react";
-import { Container, PageTitle } from "./styles.module";
+import { Container, PageTitle } from "../styles/Homepage.module";
 import DefaultButton from "@/components/DefaultButton";
 
 // import { Container } from './styles';
