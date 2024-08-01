@@ -1,8 +1,9 @@
 
   :root {
     --primary: #a094ee;
-    --secondary: slateGray;
+    --secondary: #7A7CB7;
     --text: #fff;
+    --black-text:#3F3C3C;
     --active: black;
     --inactive: slateGray;
     --test:red;
