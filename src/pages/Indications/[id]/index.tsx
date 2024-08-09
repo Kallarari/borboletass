@@ -22,7 +22,7 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     if (router.query.id) handleGetOne(router.query.id as string);
-  }, []);
+  }, [router.query.id]);
   function handleGetOne(id: string) {
     axios
       .get<IIndication>(`../api/indications/GetOne?id=${id}`)

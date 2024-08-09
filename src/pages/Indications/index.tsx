@@ -7,7 +7,6 @@ import {
   IndicationContainer,
 } from "../../styles/Indications.module";
 import axios from "axios";
-import IndicationTag from "@/components/IndicationsPage/IndicationTag";
 import { IIndication } from "@/types/IIndication";
 import PageContainer from "@/components/PageContainer";
 import PagesTitle from "@/components/PagesTitle";
@@ -65,7 +64,7 @@ const Indications: React.FC = () => {
           indicationList.length > 0 ? (
             <IndicationContainer>
               {indicationList.map((item, key) => (
-                <IndicationCard {...item} />
+                <IndicationCard key={key} {...item} />
               ))}
             </IndicationContainer>
           ) : (

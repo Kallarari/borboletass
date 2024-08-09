@@ -7,7 +7,6 @@ import {
   IndicationContainer,
 } from "../../../styles/IndicationEdition.module";
 import axios from "axios";
-import IndicationTag from "@/components/IndicationsPage/IndicationTag";
 import { IIndication } from "@/types/IIndication";
 import PageContainer from "@/components/PageContainer";
 import PagesTitle from "@/components/PagesTitle";
@@ -42,7 +41,7 @@ const Edition: React.FC = () => {
         .then((res) => setIndication(res.data))
         .catch((err) => console.log(err));
     setIsLoading(false);
-  }, []);
+  }, [params.id]);
   function handleCreateIndications() {
     if (indication.body == "")
       return setItensHasError((prev) => ({ ...prev, body: true }));
