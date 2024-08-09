@@ -6,4 +6,6 @@ export const StyledTitle = styled.h1`
   font-optical-sizing: auto;
   font-style: normal;
   color: var(--black-text);
+  width: 100%;
+  text-align: center;
 `;

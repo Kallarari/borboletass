@@ -6,7 +6,7 @@
     --black-text:#3F3C3C;
     --active: black;
     --inactive: slateGray;
-    --test:red;
+    --error:rgb(156, 69, 69);
   }
   
   * {

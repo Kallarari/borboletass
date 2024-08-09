@@ -1,6 +1,7 @@
 export type IIndication = {
   title: string;
-  name: string;
+  imageLink:string;
+  body:string
   date: string;
   _id:string;
 }

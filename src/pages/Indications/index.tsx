@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   ButtonsContainer,
@@ -13,11 +13,18 @@ import PageContainer from "@/components/PageContainer";
 import PagesTitle from "@/components/PagesTitle";
 import IndicationCard from "@/components/IndicationCard";
 import DefaultButton from "@/components/DefaultButton";
+import { EosIconsLoading } from "../../../public/assets/components/LoadingCircle";
+import { useRouter } from "next/router";
 
 const Indications: React.FC = () => {
-  const [indicationList, setIndicationList] = useState<IIndication[]>([]);
+  const [indicationList, setIndicationList] = useState<IIndication[]>();
   const [title, setTitle] = useState("");
 
+  const router = useRouter();
+
+  useEffect(() => {
+    handleGetAllIndications();
+  }, []);
   function handleCreateIndications() {
     axios
       .post("api/indications/CreateNew", {
@@ -47,18 +54,32 @@ const Indications: React.FC = () => {
   return (
     <PageContainer>
       <Container>
-        <PagesTitle>Indications page</PagesTitle>{/* 
+        <PagesTitle>Lista das indicações</PagesTitle>
+        {/* 
         <ButtonsContainer>
           <button onClick={handleGetAllIndications}>buscar todas</button>
           <button onClick={handleCreateIndications}>criar uma</button>
           <input type="text" onChange={(e) => setTitle(e.target.value)} />
         </ButtonsContainer> */}
-        <IndicationContainer>
-          {indicationList.map((item, key) => (
-            <IndicationCard {...item} />
-          ))}
-        </IndicationContainer>
-        <DefaultButton label="Criar uma nova"></DefaultButton>
+        {indicationList ? (
+          indicationList.length > 0 ? (
+            <IndicationContainer>
+              {indicationList.map((item, key) => (
+                <IndicationCard {...item} />
+              ))}
+            </IndicationContainer>
+          ) : (
+            <PagesTitle>Sem indicações cadastradas...</PagesTitle>
+          )
+        ) : (
+          <EosIconsLoading />
+        )}
+        <DefaultButton
+          onClick={() => {
+            router.push("/Indications/Edition");
+          }}
+          label="Criar uma nova"
+        ></DefaultButton>
       </Container>
     </PageContainer>
   );
