@@ -9,4 +9,8 @@ export const StyledButton = styled.button`
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: var(--text);
   min-width: 220px;
+  cursor: pointer;
+  :disabled {
+    background-color: grey;
+  }
 `;

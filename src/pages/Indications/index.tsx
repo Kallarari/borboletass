@@ -1,15 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { ButtonsContainer, IndicationContainer } from "../../styles/Indications.module";
+import {
+  ButtonsContainer,
+  Container,
+  IndicationContainer,
+} from "../../styles/Indications.module";
 import axios from "axios";
-import IndicationTag from "@/components/IndicationsPage/IndicationTag";
 import { IIndication } from "@/types/IIndication";
+import PageContainer from "@/components/PageContainer";
+import PagesTitle from "@/components/PagesTitle";
+import IndicationCard from "@/components/IndicationCard";
+import DefaultButton from "@/components/DefaultButton";
+import { EosIconsLoading } from "../../../public/assets/components/LoadingCircle";
+import { useRouter } from "next/router";
 
 const Indications: React.FC = () => {
-  const [indicationList, setIndicationList] = useState<IIndication[]>([]);
+  const [indicationList, setIndicationList] = useState<IIndication[]>();
   const [title, setTitle] = useState("");
 
+  const router = useRouter();
+
+  useEffect(() => {
+    handleGetAllIndications();
+  }, []);
   function handleCreateIndications() {
     axios
       .post("api/indications/CreateNew", {
@@ -37,22 +51,36 @@ const Indications: React.FC = () => {
       .then((res) => handleGetAllIndications());
   }
   return (
-    <div>
-      <h1>Indications page</h1>
-      <ButtonsContainer>
-        <button onClick={handleGetAllIndications}>buscar todas</button>
-        <button onClick={handleCreateIndications}>criar uma</button>
-        <input type="text" onChange={(e) => setTitle(e.target.value)} />
-      </ButtonsContainer>
-      <h2>Indicações</h2>
-      {indicationList.map((item,key) => (
-        <IndicationContainer  key={key}>
-          <a onClick={() => handleDeleteOne(item._id)}>Delete</a>
-          <a onClick={() => handleUpdateOne(item._id)}>Update</a>
-          <IndicationTag indication={item} />
-        </IndicationContainer>
-      ))}
-    </div>
+    <PageContainer>
+      <Container>
+        <PagesTitle>Lista das indicações</PagesTitle>
+        {/* 
+        <ButtonsContainer>
+          <button onClick={handleGetAllIndications}>buscar todas</button>
+          <button onClick={handleCreateIndications}>criar uma</button>
+          <input type="text" onChange={(e) => setTitle(e.target.value)} />
+        </ButtonsContainer> */}
+        {indicationList ? (
+          indicationList.length > 0 ? (
+            <IndicationContainer>
+              {indicationList.map((item, key) => (
+                <IndicationCard key={key} {...item} />
+              ))}
+            </IndicationContainer>
+          ) : (
+            <PagesTitle>Sem indicações cadastradas...</PagesTitle>
+          )
+        ) : (
+          <EosIconsLoading />
+        )}
+        <DefaultButton
+          onClick={() => {
+            router.push("/Indications/Edition");
+          }}
+          label="Criar uma nova"
+        ></DefaultButton>
+      </Container>
+    </PageContainer>
   );
 };
 

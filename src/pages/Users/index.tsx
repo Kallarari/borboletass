@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import { IUser } from "@/types/IUser";
 import PageContainer from "@/components/PageContainer";
+import PagesTitle from "@/components/PagesTitle";
 
 const Users: React.FC = () => {
   const [userList, setUserList] = useState<IUser[]>([]);
@@ -44,7 +45,7 @@ const Users: React.FC = () => {
   return (
     <PageContainer>
       <div>
-        <h1>Página de usuários</h1>
+        <PagesTitle>O que deseja fazer hoje?</PagesTitle>
         <ButtonsContainer>
           <button onClick={handleGetAllUsers}>buscar todos </button>
           <button onClick={handleCreateUser}>criar um</button>
