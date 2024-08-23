@@ -4,7 +4,6 @@ import { ObjectId } from "mongodb";
 
 // use querry params para buscar com a propriedade id ex: id=_id
 export default async (request: NowRequest, response: NowResponse) => {
-  console.log('api de request one')
   if (request.query.id) {
     const db = await connectToDatabase(process.env.MONGODB_URI!);
     const collection = db.collection("indications");
