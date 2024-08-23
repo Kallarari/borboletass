@@ -48,7 +48,7 @@ const Users: React.FC = () => {
     handleGetAllUsers();
   }, []);
   return (
-    <PageContainer>
+    <PageContainer hasBackButton>
       <Container>
         <PagesTitle>Lista de pacientes</PagesTitle>
         {/*  <ButtonsContainer>

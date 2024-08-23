@@ -1,12 +1,24 @@
 "use client";
-import React, { useState } from "react";
-import { ButtonsContainer, CustomButton, StyledTD } from "../../styles/Diarys.module";
+import React, { useEffect, useState } from "react";
+import {
+  ButtonsContainer,
+  CustomButton,
+  Container,
+  DiarysContainer,
+  StyledTD,
+} from "../../styles/Diarys.module";
 import { IDiary } from "@/types/IDiary";
 import axios from "axios";
+import PageContainer from "@/components/PageContainer";
+import PagesTitle from "@/components/PagesTitle";
+import DiaryCard from "@/components/DiaryCard";
 
 const Diarys: React.FC = () => {
   const [inputText, setInputText] = useState("");
   const [diarysList, setDiarysList] = useState<IDiary[]>([]);
+  useEffect(() => {
+    hanldeGetAllDiarys();
+  }, []);
   function hanldeGetAllDiarys() {
     axios
       .get<IDiary[]>("api/diary/GetAll")
@@ -35,49 +47,18 @@ const Diarys: React.FC = () => {
       .then((res) => hanldeGetAllDiarys());
   }
   return (
-    <div>
-      <h1>Pagina dos diários</h1>
-      <ButtonsContainer>
-        <button onClick={hanldeGetAllDiarys}>buscar todas</button>
-        <button onClick={handleCreateDiary}>criar uma</button>
-        <input type="text" onChange={(e) => setInputText(e.target.value)} />
-      </ButtonsContainer>
-      <h2>Diários</h2>
-      <table>
-        <tbody>
-          <tr>
-            <StyledTD>Título</StyledTD>
-            <StyledTD>Conteúdo</StyledTD>
-            <StyledTD>Data</StyledTD>
-            <StyledTD>Felicidade</StyledTD>
-            <StyledTD>Usuário</StyledTD>
-            <td></td>
-            <td></td>
-          </tr>
-          {diarysList.map((item,key) => (
-            <tr key={key}>
-              <StyledTD>{item.title}</StyledTD>
-              <StyledTD>{item.content}</StyledTD>
-              <StyledTD>{item.data}</StyledTD>
-              <StyledTD>{item.happiness}</StyledTD>
-              <StyledTD>{item.user}</StyledTD>
-              <StyledTD>
-                <CustomButton onClick={() => {hanldeUpdateDiary(item._id)}}>Editar</CustomButton>
-              </StyledTD>
-              <StyledTD>
-                <CustomButton
-                  onClick={() => {
-                    handleDeleteOne(item._id);
-                  }}
-                >
-                  Deletar
-                </CustomButton>
-              </StyledTD>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <PageContainer hasBackButton>
+      <Container>
+        <PagesTitle>Lista de diários</PagesTitle>
+        <DiarysContainer>
+          {diarysList.length == 0 ? (
+            <p>Sem diários cadastrados</p>
+          ) : (
+            diarysList.map((item) => <DiaryCard key={item._id} diary={item} />)
+          )}
+        </DiarysContainer>
+      </Container>
+    </PageContainer>
   );
 };
 

@@ -81,7 +81,7 @@ const Edition: React.FC = () => {
   return (
     <PageContainer hasBackButton>
       <Container>
-        <PagesTitle>Indicação</PagesTitle>
+        <PagesTitle>Usuário</PagesTitle>
         {isLoading ? (
           <EosIconsLoading />
         ) : (

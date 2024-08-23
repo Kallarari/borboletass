@@ -17,9 +17,7 @@ export default async (request: NowRequest, response: NowResponse) => {
     const result = await collection.updateOne(
       { _id: new ObjectId(request.query.id as string) },
       {
-        $set: {
-          [keyToModify[0]]: request.body[keyToModify[0]],
-        },
+        $set: request.body
       }
     );
     return response.json({ read: true, result });
