@@ -15,6 +15,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { EosIconsLoading } from "../../../../public/assets/components/LoadingCircle";
 import DefaultInput from "@/components/DefaultInput";
 import { useRouter } from "next/router";
+import DefaultTextArea from "@/components/DefaultTextArea";
 
 const Edition: React.FC = () => {
   const router = useRouter();
@@ -101,14 +102,14 @@ const Edition: React.FC = () => {
               hasError={itensHasError.link}
               label="Link da imagem"
             ></DefaultInput>
-            <DefaultInput
+            <DefaultTextArea
               value={indication.body}
               onChange={(e) =>
                 setIndication((prev) => ({ ...prev, body: e.target.value }))
               }
               hasError={itensHasError.body}
               label="Corpo da indicação"
-            ></DefaultInput>
+            ></DefaultTextArea>
             <ButtonsContainer>
               {params.id ? (
                 <>

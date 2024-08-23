@@ -20,12 +20,10 @@ const HomePage: React.FC = () => {
           onClick={() => router.push("/Indications")}
         ></DefaultButton>
         <DefaultButton
-          disabled
           label="Página de Usuários"
           onClick={() => router.push("/Users")}
         ></DefaultButton>
         <DefaultButton
-          disabled
           label="Página de Diários"
           onClick={() => router.push("/Diarys")}
         ></DefaultButton>

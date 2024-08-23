@@ -8,5 +8,9 @@ export default withPWA({
     disable: process.env.NODE_ENV === "development",
     dest:"public",
     register: true,
-    skipWaiting: true
+    skipWaiting: true,
+    compiler:{
+      ssr:true,
+      displayName:true
+    }
 })
