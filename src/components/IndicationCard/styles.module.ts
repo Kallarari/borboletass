@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const IndicationContainer = styled.div`
   border-radius: 10px;
   padding: 4px 10px;
-  width: 90vw;
   background-color: var(--secondary);
+  width: 90vw;
   border: none;
   font-size: 24px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;

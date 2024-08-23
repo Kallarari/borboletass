@@ -4,14 +4,19 @@ import {
   ButtonsContainer,
   CustomButton,
   StyledTD,
-  UserContainer,
+  Container,
+  UsersContainer,
 } from "../../styles/Users.module";
 import axios from "axios";
 import { IUser } from "@/types/IUser";
 import PageContainer from "@/components/PageContainer";
 import PagesTitle from "@/components/PagesTitle";
+import UserCard from "@/components/UserCard";
+import DefaultButton from "@/components/DefaultButton";
+import { useRouter } from "next/router";
 
 const Users: React.FC = () => {
+  const router = useRouter();
   const [userList, setUserList] = useState<IUser[]>([]);
   const [inputText, setInputText] = useState("");
   function handleCreateUser() {
@@ -44,14 +49,31 @@ const Users: React.FC = () => {
   }, []);
   return (
     <PageContainer>
-      <div>
-        <PagesTitle>O que deseja fazer hoje?</PagesTitle>
-        <ButtonsContainer>
+      <Container>
+        <PagesTitle>Lista de pacientes</PagesTitle>
+        {/*  <ButtonsContainer>
           <button onClick={handleGetAllUsers}>buscar todos </button>
           <button onClick={handleCreateUser}>criar um</button>
           <input onChange={(e) => setInputText(e.target.value)}></input>
-        </ButtonsContainer>
-        <h2>Usuários</h2>
+        </ButtonsContainer> */}
+
+        {userList.length == 0 ? (
+          <p>Sem usuários cadastrados</p>
+        ) : (
+          <UsersContainer>
+            {userList.map((item) => (
+              <UserCard key={item._id} user={item} />
+            ))}
+          </UsersContainer>
+        )}
+        <DefaultButton
+          onClick={() => {
+            router.push("/Users/Edition");
+          }}
+          label="Criar uma nova"
+        ></DefaultButton>
+      </Container>
+      {/*   <h2>Usuários</h2>
         <table>
           <tbody>
             <tr>
@@ -81,8 +103,7 @@ const Users: React.FC = () => {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </table> */}
     </PageContainer>
   );
 };

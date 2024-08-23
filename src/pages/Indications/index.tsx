@@ -51,7 +51,7 @@ const Indications: React.FC = () => {
       .then((res) => handleGetAllIndications());
   }
   return (
-    <PageContainer>
+    <PageContainer hasBackButton>
       <Container>
         <PagesTitle>Lista das indicações</PagesTitle>
         {/* 
